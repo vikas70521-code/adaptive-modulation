@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adaptive Modulation Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        input {
+            padding: 10px;
+            width: 150px;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .graphs {
+            margin-top: 40px;
+        }
+
+        .graphs img {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Adaptive Modulation Simulation</h1>
+
+    <p>
+        Enter an SNR value to run the adaptive modulation simulation.
+    </p>
+
+    <form method="POST">
+        <label>SNR (dB): </label>
+        <input type="number" name="snr" step="0.1" required>
+        <button type="submit">Run Simulation</button>
+    </form>
+
+    {% if result is not none %}
+        <h2>Simulation Result</h2>
+        <pre>{{ result }}</pre>
+    {% endif %}
+
+    <div class="graphs">
+        <h2>Simulation Results</h2>
+
+        <img src="{{ url_for('static', filename='results/ber_comparison.png') }}"
+             alt="BER Comparison">
+
+        <img src="{{ url_for('static', filename='results/spectral_efficiency.png') }}"
+             alt="Spectral Efficiency">
+
+        <img src="{{ url_for('static', filename='results/csi_impact.png') }}"
+             alt="CSI Impact">
+
+        <img src="{{ url_for('static', filename='results/mode_usage.png') }}"
+             alt="Mode Usage">
+
+        <img src="{{ url_for('static', filename='results/target_tradeoff.png') }}"
+             alt="Target Tradeoff">
+    </div>
+
+</body>
+</html>
